@@ -55,6 +55,36 @@ class XmlViewGenerator
     }
 
     /**
+     * Load node descriptions from XSD
+     * @param string $path
+     * @return void
+     */
+    public function loadNodeDescriptionsFromXSD(string $path): void
+    {
+        $xml = simplexml_load_file($path);
+        $mapping = [];
+
+        if ($xml) {
+            foreach ($xml->xpath('//xsd:element') as $element) {
+                $field_name = (string)$element['name'];
+
+                $doc = $element->xpath('xsd:annotation/xsd:documentation');
+                if (!empty($doc)) {
+                    $documentation = str_replace(['<br >', "\n", "\r"], ' ', (string)$doc[0]);
+                } else {
+                    $documentation = '';
+                }
+
+                if (!empty(trim($documentation))) {
+                    $mapping[$field_name] = $documentation;
+                }
+            }
+        }
+
+        $this->setNodeDescriptions($mapping);
+    }
+
+    /**
      * Render xml view
      * @return string
      */

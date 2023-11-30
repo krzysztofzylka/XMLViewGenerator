@@ -35,11 +35,15 @@ $xml->loadXmlData('string');
 ```php
 $xml->loadXmlFile('file_path');
 ```
-## Komentarze dla node
+## Opisy dla nodów
 ```php
 $xml->setNodeDescriptions(['node_name' => 'description', ...]);
 ```
+## Pobranie opisów dla nodów z pliku XSD
+```php
+$xml->loadNodeDescriptionsFromXSD('file_path');
+```
 ## Renderowanie tekstu
 ```php
-$xml->render();
+echo $xml->render();
 ```
