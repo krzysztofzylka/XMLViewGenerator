@@ -61,23 +61,19 @@ class XmlViewGenerator
      */
     public function loadNodeDescriptionsFromXSD(string $path): void
     {
-        $xml = simplexml_load_file($path);
+        $xsd = simplexml_load_file($path);
+
+        if (!$xsd) {
+            return;
+        }
+
         $mapping = [];
 
-        if ($xml) {
-            foreach ($xml->xpath('//xsd:element') as $element) {
-                $field_name = (string)$element['name'];
+        foreach ($xsd->xpath('//xsd:element') as $element) {
+            $doc = $element->xpath('xsd:annotation/xsd:documentation');
 
-                $doc = $element->xpath('xsd:annotation/xsd:documentation');
-                if (!empty($doc)) {
-                    $documentation = str_replace(['<br >', "\n", "\r"], ' ', (string)$doc[0]);
-                } else {
-                    $documentation = '';
-                }
-
-                if (!empty(trim($documentation))) {
-                    $mapping[$field_name] = $documentation;
-                }
+            if (isset($doc[0]) && !empty(trim((string)$doc[0]))) {
+                $mapping[(string)$element['name']] = str_replace(['<br >', "\n", "\r"], ' ', (string)$doc[0]);
             }
         }
 
