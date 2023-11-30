@@ -1,0 +1,20 @@
+{
+    "name": "krzysztofzylka/xml-view-generator",
+    "description": "XML view generator",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Krzysztofzylka\\XmlViewGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Krzysztof Zylka",
+            "email": "krzysztofzylka@yahoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    }
+}
