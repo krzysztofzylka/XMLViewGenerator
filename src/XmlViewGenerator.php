@@ -90,7 +90,7 @@ class XmlViewGenerator
 
         if (!empty($this->nodeDescriptions)) {
             foreach ($this->nodeDescriptions as $nodeDescriptionKey => $nodeDescription) {
-                $data = str_replace('</' . $nodeDescriptionKey . '>', '</' . $nodeDescriptionKey . '> # ' . $nodeDescription, $data);
+                $data = preg_replace('/(<' . $nodeDescriptionKey . '*>)\s|(<' . $nodeDescriptionKey . '*>.*<\/' . $nodeDescriptionKey . '*>)\s/m', '$1$2 # ' . $nodeDescription . PHP_EOL, $data);
             }
         }
 
