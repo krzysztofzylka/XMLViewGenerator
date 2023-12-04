@@ -35,7 +35,7 @@ $xml->loadXmlData('string');
 ```php
 $xml->loadXmlFile('file_path');
 ```
-## Node descriptions
+## Node descriptions from array
 ```php
 $xml->setNodeDescriptions(['node_name' => 'description', ...]);
 ```
