@@ -1,9 +1,9 @@
-# Instalacja pakietu
+# Install
 ```bash
 composer require krzysztofzylka/xml-view-generator
 ```
 
-# Wyświetlenie ładnego XML'a
+# Render beautifully XML
 ```php
 $xml = new \Krzysztofzylka\XmlViewGenerator\XmlViewGenerator();
 $xml->loadXmlData('
@@ -24,26 +24,26 @@ $xml->setNodeDescriptions([
 
 echo $xml->render();
 ```
-## Przykładowy podgląd:
+## Example:
 ![alt text](resources/screen.png)
-# Metody
-## Wgranie XML'a z tekstu
+# Methods
+## Load XML from string
 ```php
 $xml->loadXmlData('string');
 ```
-## Wgranie XML'a z pliku
+## Load XML from file
 ```php
 $xml->loadXmlFile('file_path');
 ```
-## Opisy dla nodów
+## Node descriptions
 ```php
 $xml->setNodeDescriptions(['node_name' => 'description', ...]);
 ```
-## Pobranie opisów dla nodów z pliku XSD
+## Load mode descriptions from XSD file
 ```php
 $xml->loadNodeDescriptionsFromXSD('file_path');
 ```
-## Renderowanie tekstu
+## Render beautifully XML
 ```php
 echo $xml->render();
 ```
